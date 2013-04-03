@@ -168,7 +168,7 @@
 				$adapter->select(  )->from( $dataTable )->where( $modelIdAttributeCode . ' = ?', $modelId );
 				$select = $data = array(  );
 				$adapter->query( $select );
-				$query = foreach ($_data as );
+				foreach ($_data as $query);
 
 				if ($item = $query->fetch(  )) {
 					$key = $item[$dataKeyAttributeCode];

@@ -74,7 +74,7 @@
      *
      * @return Varien_Data_Collection
      */
-			$websiteId = function __prepareCollection() {;
+		function __prepareCollection($websiteId) {
 			$collection = Mage::getModel( 'shippingtablerate/tablerate' )->getCollection(  );
 			$collection->getSelect(  );
 			$select = $this->getWebsiteId(  );
@@ -82,7 +82,7 @@
 			if ($websiteId) {
 				$select->where( 'website_id = ?', $websiteId );
 			} 
-else {
+            else {
 				$select->where( 'website_id = -1' );
 			}
 

@@ -48,7 +48,14 @@
 
 			if ($request->isPost(  )) {
 				$session = Mage::getSingleton( 'core/session' );
-				$address = new Varien_Object( 'country_id' )(  )( array( 'country_id' => , 'region_id' => trim( $request->getPost( 'region_id' ) ), 'region' => trim( $request->getPost( 'region' ) ), 'city' => trim( $request->getPost( 'city' ) ), 'postcode' => trim( $request->getPost( 'postcode' ) ) ) );
+				$address = new Varien_Object(
+				        array(
+				                'country_id' => trim( $request->getPost( 'country_id' ) ),
+				                'region_id' => trim( $request->getPost( 'region_id' ) ), 
+				                'region' => trim( $request->getPost( 'region' ) ), 
+				                'city' => trim( $request->getPost( 'city' ) ), 
+				                'postcode' => trim( $request->getPost( 'postcode' ))
+			                 ) );
 				$helper->setCustomerAddress( $address );
 				$session->addSuccess( $helper->__( 'Your location has been saved.' ) );
 			}
