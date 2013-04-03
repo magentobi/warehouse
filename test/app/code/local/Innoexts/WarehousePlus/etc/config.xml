@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Innoexts
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the InnoExts Commercial License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://innoexts.com/commercial-license-agreement
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@innoexts.com so we can send you a copy immediately.
+ * 
+ * @category    Innoexts
+ * @package     Innoexts_WarehousePlus
+ * @copyright   Copyright (c) 2013 Innoexts (http://www.innoexts.com)
+ * @license     http://innoexts.com/commercial-license-agreement  InnoExts Commercial License
+ */
+-->
+<config>
+    <modules>
+        <Innoexts_WarehousePlus>
+            <version>1.2.0.3</version>
+        </Innoexts_WarehousePlus>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Innoexts_WarehousePlus before="Mage_Adminhtml">Innoexts_WarehousePlus_Adminhtml</Innoexts_WarehousePlus>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <translate>
+            <modules>
+                <Innoexts_WarehousePlus>
+                    <files>
+                        <default>Innoexts_WarehousePlus.csv</default>
+                    </files>
+                </Innoexts_WarehousePlus>
+            </modules>
+        </translate>
+        <events>
+            
+            <!-- Product Price -->
+            <catalog_product_get_final_price>
+                <observers>
+                    <warehouseplus_get_product_final_price>
+                        <class>warehouseplus/catalog_product_price_observer</class>
+                        <method>getFinal</method>
+                    </warehouseplus_get_product_final_price>
+                </observers>
+            </catalog_product_get_final_price>
+            <prepare_catalog_product_collection_prices>
+                <observers>
+                    <warehouseplus_get_product_collection_final_price>
+                        <class>warehouseplus/catalog_product_price_observer</class>
+                        <method>getCollectionFinal</method>
+                    </warehouseplus_get_product_collection_final_price>
+                </observers>
+            </prepare_catalog_product_collection_prices>
+            
+        </events>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Innoexts_WarehousePlus>
+                    <files>
+                        <default>Innoexts_WarehousePlus.csv</default>
+                    </files>
+                </Innoexts_WarehousePlus>
+            </modules>
+        </translate>
+        <layout>
+              <updates>
+                  <warehouseplus>
+                      <file>warehouseplus.xml</file>
+                  </warehouseplus>
+              </updates>
+        </layout>
+        <events>
+            
+            <!-- Product Price -->
+            <catalog_product_get_final_price>
+                <observers>
+                    <warehouseplus_get_product_final_price>
+                        <class>warehouseplus/catalog_product_price_observer</class>
+                        <method>getFinal</method>
+                    </warehouseplus_get_product_final_price>
+                </observers>
+            </catalog_product_get_final_price>
+            <prepare_catalog_product_collection_prices>
+                <observers>
+                    <warehouseplus_get_product_collection_final_price>
+                        <class>warehouseplus/catalog_product_price_observer</class>
+                        <method>getCollectionFinal</method>
+                    </warehouseplus_get_product_collection_final_price>
+                </observers>
+            </prepare_catalog_product_collection_prices>
+            
+        </events>
+    </adminhtml>
+    <global>
+        <models>
+            <warehouseplus>
+                <class>Innoexts_WarehousePlus_Model</class>
+                <resourceModel>warehouseplus_mysql4</resourceModel>
+            </warehouseplus>
+            <warehouseplus_mysql4>
+                <class>Innoexts_WarehousePlus_Model_Mysql4</class>
+            </warehouseplus_mysql4>
+            <adminhtml>
+                <rewrite>
+                    <system_config_source_price_scope>Innoexts_WarehousePlus_Model_Adminhtml_System_Config_Source_Price_Scope</system_config_source_price_scope>
+                    <system_config_backend_price_scope>Innoexts_WarehousePlus_Model_Adminhtml_System_Config_Backend_Price_Scope</system_config_backend_price_scope>
+                </rewrite>
+            </adminhtml>
+            <bundle_mysql4>
+                <rewrite>
+                    <indexer_price>Innoexts_WarehousePlus_Model_Mysql4_Bundle_Indexer_Price</indexer_price>
+                </rewrite>
+            </bundle_mysql4>
+            <catalog>
+                <rewrite>
+                    <product_attribute_backend_finishdate>Innoexts_WarehousePlus_Model_Catalog_Product_Attribute_Backend_Finishdate</product_attribute_backend_finishdate>
+                    <product_attribute_backend_price>Innoexts_WarehousePlus_Model_Catalog_Product_Attribute_Backend_Price</product_attribute_backend_price>
+                    <product_attribute_backend_startdate>Innoexts_WarehousePlus_Model_Catalog_Product_Attribute_Backend_Startdate</product_attribute_backend_startdate>
+                    <product_attribute_backend_tierprice>Innoexts_WarehousePlus_Model_Catalog_Product_Attribute_Backend_Tierprice</product_attribute_backend_tierprice>
+                    <product_zone_price>Innoexts_WarehousePlus_Model_Catalog_Product_Zone_Price</product_zone_price>
+                </rewrite>
+            </catalog>
+            <catalog_resource_eav_mysql4>
+                <entities>
+                    <product_zone_price>
+                        <table>catalog_product_zone_price</table>
+                    </product_zone_price>
+                </entities>
+                <rewrite>
+                    <product_attribute_backend_tierprice>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Attribute_Backend_Tierprice</product_attribute_backend_tierprice>
+                    <product_collection>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Collection</product_collection>
+                    <product_indexer_price>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Indexer_Price</product_indexer_price>
+                    <product_indexer_price_default>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Indexer_Price_Default</product_indexer_price_default>
+                    <product_indexer_price_grouped>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Indexer_Price_Grouped</product_indexer_price_grouped>
+                    <product_indexer_price_configurable>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Indexer_Price_Configurable</product_indexer_price_configurable>
+                    <product_zone_price>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Zone_Price</product_zone_price>
+                    <product_zone_price_collection>Innoexts_WarehousePlus_Model_Mysql4_Catalog_Product_Zone_Price_Collection</product_zone_price_collection>
+                </rewrite>
+            </catalog_resource_eav_mysql4>
+            <catalogrule>
+                <rewrite>
+                    <rule_product_price>Innoexts_WarehousePlus_Model_Catalogrule_Rule_Product_Price</rule_product_price>
+                </rewrite>
+            </catalogrule>
+            <directory>
+                <rewrite>
+                    <currency>Innoexts_WarehousePlus_Model_Directory_Currency</currency>
+                </rewrite>
+            </directory>
+            <downloadable_mysql4>
+                <rewrite>
+                    <indexer_price>Innoexts_WarehousePlus_Model_Mysql4_Downloadable_Indexer_Price</indexer_price>
+                </rewrite>
+            </downloadable_mysql4>
+            <warehouse>
+                <rewrite>
+                    <catalog_product_observer>Innoexts_WarehousePlus_Model_Catalog_Product_Observer</catalog_product_observer>
+                    <catalog_product_price_observer>Innoexts_WarehousePlus_Model_Catalog_Product_Price_Observer</catalog_product_price_observer>
+                </rewrite>
+            </warehouse>
+        </models>
+        <resources>
+            <warehouseplus_setup>
+                <setup>
+                    <module>Innoexts_WarehousePlus</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </warehouseplus_setup>
+            <warehouseplus_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </warehouseplus_write>
+            <warehouseplus_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </warehouseplus_read>
+        </resources>
+        <events>
+            
+            <!-- Product -->
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <warehouseplus_add_product_zone_price_tab>
+                        <type>singleton</type>
+                        <class>warehouseplus/catalog_product_observer</class>
+                        <method>addZonePriceTab</method>
+                    </warehouseplus_add_product_zone_price_tab>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+            
+            <!-- Product Price Index -->
+            <prepare_catalog_product_price_index_table>
+                <observers>
+                    <warehouseplus_prepare_product_price_index>
+                        <class>warehouseplus/catalog_product_price_observer</class>
+                        <method>prepareIndex</method>
+                    </warehouseplus_prepare_product_price_index>
+                </observers>
+            </prepare_catalog_product_price_index_table>
+            
+            <!-- Currency -->
+            <directory_currency_rates_save_after>
+                <observers>
+                    <warehouseplus_after_currency_rates_save>
+                        <class>warehouseplus/directory_observer</class>
+                        <method>afterCurrencyRatesSave</method>
+                    </warehouseplus_after_currency_rates_save>
+                </observers>
+            </directory_currency_rates_save_after>
+            
+        </events>
+        <blocks>
+            <warehouseplus>
+                <class>Innoexts_WarehousePlus_Block</class>
+            </warehouseplus>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tab_attributes>Innoexts_WarehousePlus_Block_Adminhtml_Catalog_Product_Edit_Tab_Attributes</catalog_product_edit_tab_attributes>
+                    <catalog_product_edit_tab_price_tier>Innoexts_WarehousePlus_Block_Adminhtml_Catalog_Product_Edit_Tab_Price_Tier_Renderer</catalog_product_edit_tab_price_tier>
+                </rewrite>
+            </adminhtml>
+            <bundle>
+                <rewrite>
+                    <adminhtml_catalog_product_edit_tab_attributes>Innoexts_WarehousePlus_Block_Bundle_Adminhtml_Catalog_Product_Edit_Tab_Attributes</adminhtml_catalog_product_edit_tab_attributes>
+                </rewrite>
+            </bundle>
+            <warehouse>
+                <rewrite>
+                    <adminhtml_catalog_product_edit_tab_batchprice_renderer>Innoexts_WarehousePlus_Block_Adminhtml_Catalog_Product_Edit_Tab_Batchprice_Renderer</adminhtml_catalog_product_edit_tab_batchprice_renderer>
+                    <adminhtml_catalog_product_edit_tab_batchspecialprice_renderer>Innoexts_WarehousePlus_Block_Adminhtml_Catalog_Product_Edit_Tab_Batchspecialprice_Renderer</adminhtml_catalog_product_edit_tab_batchspecialprice_renderer>
+                </rewrite>
+            </warehouse>
+        </blocks>
+        <helpers>
+            <warehouseplus>
+                <class>Innoexts_WarehousePlus_Helper</class>
+            </warehouseplus>
+            <warehouse>
+                <rewrite>
+                    <data>Innoexts_WarehousePlus_Helper_Data</data>
+                    <catalog_product>Innoexts_WarehousePlus_Helper_Catalog_Product</catalog_product>
+                    <catalog_product_price>Innoexts_WarehousePlus_Helper_Catalog_Product_Price</catalog_product_price>
+                    <catalog_product_price_indexer>Innoexts_WarehousePlus_Helper_Catalog_Product_Price_Indexer</catalog_product_price_indexer>
+                    <directory_currency>Innoexts_WarehousePlus_Helper_Directory_Currency</directory_currency>
+                    <index_process>Innoexts_WarehousePlus_Helper_Index_Process</index_process>
+                </rewrite>
+            </warehouse>
+            <tax>
+                <rewrite>
+                    <data>Innoexts_WarehousePlus_Helper_Tax_Data</data>
+                </rewrite>
+            </tax>
+        </helpers>
+    </global>
+    <default>
+        <warehouse>
+            <catalog>
+                <display_backend_grid_qty>1</display_backend_grid_qty>
+                <display_backend_grid_batch_prices>0</display_backend_grid_batch_prices>
+            </catalog>
+        </warehouse>
+    </default>
+</config>

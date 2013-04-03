@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Innoexts
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the InnoExts Commercial License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://innoexts.com/commercial-license-agreement
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@innoexts.com so we can send you a copy immediately.
+ * 
+ * @category    Innoexts
+ * @package     Innoexts_Warehouse
+ * @copyright   Copyright (c) 2013 Innoexts (http://www.innoexts.com)
+ * @license     http://innoexts.com/commercial-license-agreement  InnoExts Commercial License
+ */
+-->
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}"
+             targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <xsd:complexType name="catalogInventoryStockItemEntity">
+                <xsd:sequence>
+                    <xsd:element name="product_id" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="qty" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="is_in_stock" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="stock_id" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="catalogInventoryStockItemUpdateEntity">
+                <xsd:sequence>
+                    <xsd:element name="qty" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="is_in_stock" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="manage_stock" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="use_config_manage_stock" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="min_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="use_config_min_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="min_sale_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="use_config_min_sale_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="max_sale_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="use_config_max_sale_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="is_qty_decimal" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="backorders" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="use_config_backorders" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="notify_stock_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="use_config_notify_stock_qty" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="stock_id" type="xsd:int" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="catalogInventoryStockItemListByStockRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productIds" type="typens:ArrayOfString" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="stockId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="catalogInventoryStockItemUpdateByStockRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="data" type="typens:catalogInventoryStockItemUpdateEntity" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="stockId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="catalogInventoryStockItemListByStockRequest">
+        <wsdl:part name="parameters" element="typens:catalogInventoryStockItemListByStockRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="catalogInventoryStockItemUpdateByStockRequest">
+        <wsdl:part name="parameters" element="typens:catalogInventoryStockItemUpdateByStockRequestParam" />
+    </wsdl:message>
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="catalogInventoryStockItemListByStock">
+            <wsdl:documentation>Retrieve stock data by product ids and stock id</wsdl:documentation>
+            <wsdl:input message="typens:catalogInventoryStockItemListByStockRequest" />
+            <wsdl:output message="typens:catalogInventoryStockItemListResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="catalogInventoryStockItemUpdateByStock">
+            <wsdl:documentation>Update product stock data by stock id</wsdl:documentation>
+            <wsdl:input message="typens:catalogInventoryStockItemUpdateByStockRequest" />
+            <wsdl:output message="typens:catalogInventoryStockItemUpdateResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="catalogInventoryStockItemListByStock">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="catalogInventoryStockItemUpdateByStock">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

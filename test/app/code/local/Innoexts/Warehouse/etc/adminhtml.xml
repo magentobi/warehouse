@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Innoexts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the InnoExts Commercial License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://innoexts.com/commercial-license-agreement
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@innoexts.com so we can send you a copy immediately.
+ * 
+ * @category    Innoexts
+ * @package     Innoexts_Warehouse
+ * @copyright   Copyright (c) 2013 Innoexts (http://www.innoexts.com)
+ * @license     http://innoexts.com/commercial-license-agreement  InnoExts Commercial License
+ */
+-->
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <warehouses translate="title" module="warehouse">
+                    <title>Manage Warehouses</title>
+                    <action>adminhtml/warehouse/</action>
+                    <sort_order>17</sort_order>
+                </warehouses>
+            </children>
+        </catalog>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <warehouses translate="title" module="warehouse">
+                                <title>Manage Warehouses</title>
+                                <children>
+                                    <save translate="title">
+                                        <title>Save Warehouse</title>
+                                        <sort_order>0</sort_order>
+                                    </save>
+                                    <delete translate="title">
+                                        <title>Delete Warehouse</title>
+                                        <sort_order>10</sort_order>
+                                    </delete>
+                                </children>
+                            </warehouses>
+                        </children>
+                    </catalog>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <warehouse translate="title" module="warehouse">
+                                        <title>Warehouses Section</title>
+                                    </warehouse>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

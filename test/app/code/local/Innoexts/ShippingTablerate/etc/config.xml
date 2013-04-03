@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Innoexts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@innoexts.com so we can send you a copy immediately.
+ *
+ * @category    Innoexts
+ * @package     Innoexts_ShippingTablerate
+ * @copyright   Copyright (c) 2013 Innoexts (http://www.innoexts.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Innoexts_ShippingTablerate>
+            <version>1.2.0.0</version>
+        </Innoexts_ShippingTablerate>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Innoexts_ShippingTablerate before="Mage_Adminhtml">Innoexts_ShippingTablerate_Adminhtml</Innoexts_ShippingTablerate>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Innoexts_ShippingTablerate>
+                    <files>
+                        <default>Innoexts_ShippingTablerate.csv</default>
+                    </files>
+                </Innoexts_ShippingTablerate>
+            </modules>
+        </translate>
+        <layout>
+              <updates>
+                  <shippingtablerate>
+                      <file>shippingtablerate.xml</file>
+                  </shippingtablerate>
+              </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <models>
+            <shippingtablerate>
+                <class>Innoexts_ShippingTablerate_Model</class>
+                <resourceModel>shippingtablerate_mysql4</resourceModel>
+            </shippingtablerate>
+            <shippingtablerate_mysql4>
+                <class>Innoexts_ShippingTablerate_Model_Mysql4</class>
+                <entities>
+                    <tablerate><table>shipping_tablerate</table></tablerate>
+                </entities>
+            </shippingtablerate_mysql4>
+        </models>
+        <resources>
+            <shippingtablerate_setup>
+                <setup>
+                    <module>Innoexts_ShippingTablerate</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </shippingtablerate_setup>
+            <shippingtablerate_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </shippingtablerate_write>
+            <shippingtablerate_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </shippingtablerate_read>
+        </resources>
+        <blocks>
+            <shippingtablerate>
+                <class>Innoexts_ShippingTablerate_Block</class>
+            </shippingtablerate>
+        </blocks>
+        <helpers>
+            <shippingtablerate>
+                <class>Innoexts_ShippingTablerate_Helper</class>
+            </shippingtablerate>
+        </helpers>
+    </global>
+</config>

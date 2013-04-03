@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Innoexts
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@innoexts.com so we can send you a copy immediately.
+ *
+ * @category    Innoexts
+ * @package     Innoexts_ShippingTablerate
+ * @copyright   Copyright (c) 2013 Innoexts (http://www.innoexts.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <menu>
+        <sales>
+            <children>
+                <shipping translate="title" module="tax">
+                    <title>Shipping</title>
+                    <sort_order>600</sort_order>
+                    <children>
+                        <tablerates translate="title" module="shippingtablerate">
+                            <title>Shipping Table Rates</title>
+                            <sort_order>0</sort_order>
+                            <action>adminhtml/tablerate/</action>
+                        </tablerates>
+                    </children>
+                </shipping>
+            </children>
+        </sales>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <shipping translate="title" module="shippingtablerate">
+                                <title>Shipping</title>
+                                <sort_order>90</sort_order>
+                                <children>
+                                    <tablerates translate="title" module="shippingtablerate">
+                                        <title>Shipping Table Rates</title>
+                                        <sort_order>0</sort_order>
+                                        <children>
+                                            <save translate="title">
+                                                <title>Save Rate</title>
+                                                <sort_order>0</sort_order>
+                                            </save>
+                                            <delete translate="title">
+                                                <title>Delete Rate</title>
+                                                <sort_order>10</sort_order>
+                                            </delete>
+                                        </children>
+                                    </tablerates>
+                                </children>
+                            </shipping>
+                        </children>
+                    </sales>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

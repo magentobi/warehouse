@@ -1,0 +1,95 @@
+<?php
+/**
+*
+* @ This file is created by Decoded 
+* @ Decoder + Fix (PHP5 Decoder for ionCube Encoder)
+*
+* @	Version			:	?.?.?.?
+* @	Author			:	Defy
+* @	Release on		:	02.04.2013
+* @	Official site	:	
+*
+*/
+
+	class Innoexts_Warehouse_Block_Adminhtml_Warehouse_Edit_Tab_Shipping_Carrier_Renderer extends Mage_Adminhtml_Block_Widget {
+		private $_element = null;
+
+		/**
+     * Constructor
+     */
+		function __construct() {
+			$this->setTemplate( 'warehouse/warehouse/edit/tab/shipping/carrier/renderer.phtml' );
+		}
+
+		/**
+     * Get warehouse helper
+     *
+     * @return Innoexts_Warehouse_Helper_Data
+     */
+		function getWarehouseHelper() {
+			return Mage::helper( 'warehouse' );
+		}
+
+		/**
+     * Set form element
+     * 
+     * @param Varien_Data_Form_Element_Abstract $element
+     */
+		function setElement($element) {
+			$this->_element = $element;
+			return $this;
+		}
+
+		/**
+     * Get form element
+     * 
+     * @return Varien_Data_Form_Element_Abstract
+     */
+		function getElement() {
+			return $this->_element;
+		}
+
+		/**
+     * Render block
+     * 
+     * @param Varien_Data_Form_Element_Abstract $element
+     * 
+     * @return string
+     */
+		function render($element) {
+			$this->setElement( $element );
+			return $this->toHtml(  );
+		}
+
+		/**
+     * Retrieve registered warehouse
+     *
+     * @return Innoexts_Warehouse_Model_Warehouse
+     */
+		function getWarehouse() {
+			return Mage::registry( 'warehouse' );
+		}
+
+		/**
+     * Get shipping carriers
+     * 
+     * @return array
+     */
+		function getShippingCarriers() {
+			$methods = array(  );
+			$carriers = Mage::getSingleton( 'shipping/config' )->getAllCarriers(  );
+			foreach ($carriers as $carrierCode => $carrier) {
+
+				if (( !$carrier->isActive(  ) || !$carrier->getAllowedMethods(  ) )) {
+					continue;
+				}
+
+				$carrierTitle = Mage::getStoreConfig( 'carriers/' . $carrierCode . '/title' );
+				$methods[$carrierCode] = array( 'label' => $carrierTitle, 'value' => $carrierCode );
+			}
+
+			return $methods;
+		}
+	}
+
+?>
