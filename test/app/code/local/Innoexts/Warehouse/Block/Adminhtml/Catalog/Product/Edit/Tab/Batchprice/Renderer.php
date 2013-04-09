@@ -70,22 +70,23 @@ else {
 
 			return 0;
 		}
-
-		/**
+	/**
      * Get values
      * 
      * @return array
      */
-			$helper = function getValues() {;
-			$helper->getProductPriceHelper(  );
+		function getValues() {
+		    $helper = $this->getWarehouseHelper(  );
+		    $helper->getProductPriceHelper();
 			$productPriceHelper = $this->getWarehouseHelper(  );
-			$values = array(  );
+			$values = array();
 			$stockIds = $helper->getStockIds(  );
 
-				$element = if (count( $stockIds )) {;
-				$readonly = $this->getElement(  );
-				$this->getProduct(  );
-				$product = $element->getReadonly(  );
+			if (count( $stockIds )) {
+			    $element = $this->getElement();
+				$product = $this->getProduct();
+				$readonly = $element->getReadonly();
+				
 				$websiteId = $storeId = (int)$this->getStore(  )->getId(  );
 				$product->getBatchPrices(  );
 				$prices = $helper->getProductHelper(  )->getWebsiteIdByStoreId( $storeId );

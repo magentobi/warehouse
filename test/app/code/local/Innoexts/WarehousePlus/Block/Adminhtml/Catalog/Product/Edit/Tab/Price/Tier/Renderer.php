@@ -141,8 +141,8 @@
 			}
 
 			$values = $v;
-			foreach ($values as ) {
-				$v = &;
+			foreach ($values as $v) {
+// 				$v = &;
 
 				$v['readonly'] = ($priceHelper->isAncestorData( $v, $storeId ) ? true : false);
 			}

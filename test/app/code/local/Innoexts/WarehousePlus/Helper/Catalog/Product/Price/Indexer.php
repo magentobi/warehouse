@@ -443,7 +443,7 @@ else {
 
 					$storeId = $connection->quote( $storeId );
 					$joinCond = $oldJoinCond . ' AND price_index.stock_id = ' . $stockId;
-					$joinCond .=  . ' AND ((price_index.currency IS NULL) OR (price_index.currency = ' . $currencyCode . '))';
+					$joinCond .=  ' AND ((price_index.currency IS NULL) OR (price_index.currency = ' . $currencyCode . '))';
 
 					if ($storeId) {
 						$joinCond .= ( ' AND (price_index.store_id = ' . $storeId . ')' );
